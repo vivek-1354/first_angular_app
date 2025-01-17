@@ -9,4 +9,16 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'second_app';
+
+  constructor() {
+    console.info("constructor called.")
+  }
+
+  ngOnInit() {
+    console.info("ngOnInit called.")
+  }
+
+  changeTitle() {
+    this.title = "Third app"
+  }
 }
