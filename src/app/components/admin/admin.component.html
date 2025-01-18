@@ -1,0 +1,77 @@
+<div class="card">
+  <div class="card-header">Add Course</div>
+  <div class="card-body">
+    <form #courseForm="ngForm" (ngSubmit)="onSubmit(courseForm)">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"
+          >Course Name</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter course name"
+          id="title"
+          name="title"
+          #title="ngModel"
+          [(ngModel)]="model.title"
+          required
+        />
+        @if(title.invalid && title.touched){
+        <div class="text-danger">Title is required.</div>
+        }
+        <!-- <div *ngIf="title.invalid && title.touched" class="text-danger">
+          Title is required.
+        </div> -->
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >Description</label
+        >
+        <textarea
+          class="form-control"
+          placeholder="Add description"
+          rows="3"
+          id="description"
+          name="description"
+          #description="ngModel"
+          [(ngModel)]="model.description"
+          required
+        ></textarea>
+        <!-- <div
+          *ngIf="description.invalid && description.touched"
+          class="text-danger"
+        >
+          Title is required.
+        </div> -->
+        @if(description.invalid && description.touched){
+        <div class="text-danger">Description is required.</div>
+        }
+      </div>
+      <div>
+        <label for="image">Choose an image:</label><br />
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          ngModel
+          required
+          multiple="false"
+        />
+        @if(cover){
+        <div class="image" align="right">
+          <img [src]="cover" alt="image" />
+        </div>
+        } @if(showError){
+        <div class="text-danger">Image is required.</div>
+        }
+      </div>
+      <div class="btn-cont">
+        <button type="submit" class="btn btn-primary btn-md">
+          Post Course
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
